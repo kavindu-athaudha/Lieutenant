@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	import Greet from '../lib/Greet.svelte';
 	import { Command } from '@tauri-apps/api/shell';
+	import { Alert } from 'flowbite-svelte';
 
 	onMount(async () => {
 		const command = Command.sidecar('binaries/backend');
@@ -10,5 +10,9 @@
 	});
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<Greet />
+<div class="p-8">
+    <Alert>
+      <span class="font-medium">Info alert!</span>
+      Change a few things up and try submitting again.
+    </Alert>
+  </div>
