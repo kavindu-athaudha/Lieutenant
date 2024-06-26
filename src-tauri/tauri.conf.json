@@ -12,7 +12,17 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": false,
+      "shell": {
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "binaries/backend",
+            "sidecar": true,
+            "args": [""]
+          }
+        ]
+      }
     },
     "bundle": {
       "active": true,
@@ -21,7 +31,9 @@
       "deb": {
         "depends": []
       },
-      "externalBin": [],
+      "externalBin": [
+        "binaries/backend"
+      ],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -38,7 +50,9 @@
         "providerShortName": null,
         "signingIdentity": null
       },
-      "resources": [],
+      "resources": [
+        "src-python"
+      ],
       "shortDescription": "",
       "targets": "all",
       "windows": {
