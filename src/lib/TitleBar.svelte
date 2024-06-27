@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { appWindow } from '@tauri-apps/api/window';
+	import { invoke } from '@tauri-apps/api/tauri';
 
 	let minimizeButton: HTMLDivElement;
 	let maximizeButton: HTMLDivElement;
 	let closeButton: HTMLDivElement;
 
 	onMount(() => {
-		minimizeButton.addEventListener('click', () => appWindow.minimize());
+		minimizeButton.addEventListener('click', () => invoke('minimize_to_tray'));
 		maximizeButton.addEventListener('click', () => appWindow.toggleMaximize());
 		closeButton.addEventListener('click', () => appWindow.close());
 	});

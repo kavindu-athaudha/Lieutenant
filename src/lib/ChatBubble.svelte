@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	export let message = '';
 	export let fromUser = true; // true for messages sent by the user, false for received messages
 </script>
