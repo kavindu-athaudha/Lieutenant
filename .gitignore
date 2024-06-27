@@ -23,4 +23,4 @@ vite.config.ts.timestamp-*
 
 #   Custom
 .idea/
-.src-tauri/logs
+src-tauri/.logs/

@@ -19,9 +19,22 @@
           {
             "name": "binaries/backend",
             "sidecar": true,
-            "args": [""]
+            "args": [
+              ""
+            ]
           }
         ]
+      },
+      "window": {
+        "all": false,
+        "close": true,
+        "hide": true,
+        "show": true,
+        "maximize": true,
+        "minimize": true,
+        "unmaximize": true,
+        "unminimize": true,
+        "startDragging": true
       }
     },
     "bundle": {
@@ -70,10 +83,11 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 1000,
         "resizable": true,
         "title": "Lieutenant",
-        "width": 800
+        "width": 500,
+        "decorations": false
       }
     ]
   }
