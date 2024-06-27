@@ -87,7 +87,8 @@
         "resizable": true,
         "title": "Lieutenant",
         "width": 500,
-        "decorations": false
+        "decorations": false,
+        "alwaysOnTop": true
       }
     ]
   }
