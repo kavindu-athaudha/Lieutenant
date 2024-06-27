@@ -1,8 +1,10 @@
 <script>
 	import { Button, Textarea } from 'flowbite-svelte';
+	import { AngleRightOutline, PaperClipOutline } from 'flowbite-svelte-icons';
 </script>
 
 <div class="flex w-full max-w-screen-lg space-x-2 p-2" id="MessageBoxDiv">
+	<Button outline size="xs"><PaperClipOutline/></Button>
 	<Textarea
 		id="MessageBox"
 		placeholder="Ask Lieutenant"
@@ -10,7 +12,7 @@
 		name="message"
 		class="flex-grow p-3"
 	/>
-	<Button color="blue" class="p-3">➤</Button>
+	<Button size="xs"><AngleRightOutline/></Button>
 </div>
 
 <style>

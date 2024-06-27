@@ -1,4 +1,4 @@
-import flowbitePlugin from 'flowbite/plugin'
+import flowbitePlugin from 'flowbite/plugin';
 
 import type { Config } from 'tailwindcss';
 
@@ -7,22 +7,22 @@ export default {
 
 	theme: {
 		extend: {
-      colors: {
-        // flowbite-svelte
-        primary: {
-          50: '#FFF5F2',
-          100: '#FFF1EE',
-          200: '#FFE4DE',
-          300: '#FFD5CC',
-          400: '#FFBCAD',
-          500: '#FE795D',
-          600: '#EF562F',
-          700: '#EB4F27',
-          800: '#CC4522',
-          900: '#A5371B'
-        }
-      }
-    }
+			colors: {
+				// flowbite-svelte
+				primary: {
+					50: '#1e3a8a',
+					100: '#1e3a8a',
+					200: '#1e3a8a',
+					300: '#1e3a8a',
+					400: '#1e3a8a',
+					500: '#1e3a8a',
+					600: '#1e3a8a',
+					700: '#1e3a8a',
+					800: '#1e3a8a',
+					900: '#1e3a8a'
+				}
+			}
+		}
 	},
 
 	plugins: [flowbitePlugin]
