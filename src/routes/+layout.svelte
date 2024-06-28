@@ -1,6 +1,6 @@
 <script>
-    import '../app.css';
-    import TitleBar from '$lib/TitleBar.svelte'
+    import "../app.css";
+    import TitleBar from "$lib/TitleBar.svelte"
 </script>
 
 <div class="layout">

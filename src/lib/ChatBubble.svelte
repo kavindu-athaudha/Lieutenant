@@ -1,26 +1,29 @@
 <script>
-	export let message = '';
-	export let fromUser = true; // true for messages sent by the user, false for received messages
+	import { onMount } from "svelte";
+	import { fly } from "svelte/transition";
+	
+	export let message = "";
+	export let fromUser = true;
 </script>
 
-<div class="message-container {fromUser ? 'from-user' : 'received'}">
+<div class="message-container {fromUser ? "from-user" : "received"}" transition:fly={{ x: fromUser ? 100 : -100, duration: 100 }}>
 	<div class="chat-bubble">
 		{message}
 	</div>
 </div>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap');
+	@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap");
 
 	.message-container {
 		display: flex;
 		width: 100%;
 		margin-bottom: 10px;
-		font-family: 'Noto Serif', serif;
+		font-family: "Noto Serif", serif;
 		font-optical-sizing: auto;
 		font-weight: 300;
 		font-style: normal;
-		font-variation-settings: 'wdth' 100;
+		font-variation-settings: "wdth" 100;
 	}
 
 	.from-user {
@@ -40,11 +43,11 @@
 
 	.from-user .chat-bubble {
 		background-color: var(--primary-color);
-		color: #ffffff; /* Added color for better readability */
+		color: #ffffff;
 	}
 
 	.received .chat-bubble {
 		background-color: var(--secondary-color);
-		color: #000000; /* Added color for better readability */
+		color: #000000;
 	}
 </style>

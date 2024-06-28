@@ -1,28 +1,34 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { appWindow } from '@tauri-apps/api/window';
-	import { invoke } from '@tauri-apps/api/tauri';
+	import { onMount } from "svelte";
+	import { appWindow, LogicalSize } from "@tauri-apps/api/window";
+	import { invoke } from "@tauri-apps/api/tauri";
+	import { CloseOutline, MinusOutline } from "flowbite-svelte-icons";
 
 	let minimizeButton: HTMLDivElement;
 	let maximizeButton: HTMLDivElement;
 	let closeButton: HTMLDivElement;
+	let resize: HTMLDivElement;
 
 	onMount(() => {
-		minimizeButton.addEventListener('click', () => invoke('minimize_to_tray'));
-		maximizeButton.addEventListener('click', () => appWindow.toggleMaximize());
-		closeButton.addEventListener('click', () => appWindow.close());
+		minimizeButton.addEventListener("click", () => invoke("minimize_to_tray"));
+		maximizeButton.addEventListener("click", () => appWindow.toggleMaximize());
+		closeButton.addEventListener("click", () => appWindow.close());
+		resize.addEventListener("click", () => appWindow.setSize(new LogicalSize(500, 1000)));
 	});
 </script>
 
 <div data-tauri-drag-region class="titlebar">
+	<div class="titlebar-button" bind:this={resize}>
+		<span class="material-symbols-outlined">fullscreen_portrait</span>
+	</div>
 	<div class="titlebar-button" bind:this={minimizeButton}>
-		<img src="https://api.iconify.design/mdi:window-minimize.svg" alt="minimize" />
+		<span class="material-symbols-outlined">remove</span>
 	</div>
 	<div class="titlebar-button" bind:this={maximizeButton}>
-		<img src="https://api.iconify.design/mdi:window-maximize.svg" alt="maximize" />
+		<span class="material-symbols-outlined">fullscreen</span>
 	</div>
 	<div class="titlebar-button" bind:this={closeButton}>
-		<img src="https://api.iconify.design/mdi:close.svg" alt="close" />
+		<span class="material-symbols-outlined">close</span>
 	</div>
 </div>
 
@@ -48,6 +54,7 @@
 		-webkit-app-region: no-drag; /* Prevents the buttons from being draggable */
 		transition: transform 0.2s;
 		opacity: 25%;
+		color: var(--primary-color);
 	}
 
 	.titlebar-button:hover {

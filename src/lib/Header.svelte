@@ -1,6 +1,6 @@
 <script>
-    import { Avatar } from 'flowbite-svelte';
-    import imageUrl from '$lib/media/images/logo.svg';
+    import { Avatar } from "flowbite-svelte";
+    import imageUrl from "$lib/media/images/logo.svg";
 
 </script>
 
