@@ -34,7 +34,7 @@
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'Authorization': `Bearer $YOUR_API_KEY`
+					'Authorization': `Bearer $API_TOKEN`
 				},
 				body: JSON.stringify({
 					model: "gpt-4", // Use the correct model name
@@ -77,8 +77,21 @@
 	<div class="flex flex-col items-center space-y-4 p-4">
 		<Header />
 		<MessageArea on:messageSent={addUserMessage} />
-		{#each messages as { content, role }}
-			<ChatBubble content={content} {role} />
-		{/each}
+		<div class="messages-container">
+			{#each messages as { content, role }}
+				<ChatBubble content={content} {role} />
+			{/each}
+		</div>
 	</div>
 {/if}
+
+<style>
+	.messages-container {
+		flex: 1;
+		width: 100%;
+		overflow-y: auto;
+		padding: 1rem;
+		border-radius: 10px;
+		max-height: 85vh; /* Adjust this value based on your layout */
+	}
+</style>
