@@ -1,18 +1,19 @@
 <script>
 	import { fly } from "svelte/transition";
 	
-	export let message = "";
-	export let fromUser = true;
+	export let content = "";
+	export let role = "";
+	let fromUser = role === "user";
 </script>
 
-<div class="message-container {fromUser ? "from-user" : "received"}" transition:fly={{ x: fromUser ? 100 : -100, duration: 100 }}>
+<div class="content-container {fromUser ? "from-user" : "received"}" transition:fly={{ x: fromUser ? 100 : -100, duration: 100 }}>
 	<div class="chat-bubble">
-		{message}
+		{content}
 	</div>
 </div>
 
 <style>
-	.message-container {
+	.content-container {
 		display: flex;
 		width: 100%;
 		margin-bottom: 10px;
