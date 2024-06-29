@@ -57,8 +57,8 @@
 
 	let rawHTMLContent = marked.parse(markdownText);
 	rawHTMLContent = applyFormatting(rawHTMLContent);
-	const htmlContent = highlightCodeBlocks(rawHTMLContent);
+	rawHTMLContent = highlightCodeBlocks(rawHTMLContent);
 
 </script>
 
-{@html htmlContent}
+{@html rawHTMLContent}
