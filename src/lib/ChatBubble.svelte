@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from "svelte";
 	import { fly } from "svelte/transition";
 	
 	export let message = "";
@@ -13,8 +12,6 @@
 </div>
 
 <style>
-	@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap");
-
 	.message-container {
 		display: flex;
 		width: 100%;
