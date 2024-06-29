@@ -1,6 +1,6 @@
 <script>
 	import { fly } from "svelte/transition";
-	import CodeBlock from "./CodeBlock.svelte";
+	import MarkdownRenderer from "./MarkdownRenderer.svelte";
 	
 	export let content = "";
 	export let role = "";
@@ -9,7 +9,7 @@
 
 <div class="content-container {fromUser ? "from-user" : "received"}" transition:fly={{ x: fromUser ? 100 : -100, duration: 100 }}>
 	<div class="chat-bubble">
-		<CodeBlock/>
+		<MarkdownRenderer markdownText={content}/>
 	</div>
 </div>
 
@@ -34,7 +34,7 @@
 	}
 
 	.chat-bubble {
-		max-width: 60%;
+		max-width: 80%;
 		padding: 10pt;
 		border-radius: 10pt;
 		word-wrap: break-word;
