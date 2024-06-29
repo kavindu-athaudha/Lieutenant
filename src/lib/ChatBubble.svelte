@@ -1,5 +1,6 @@
 <script>
 	import { fly } from "svelte/transition";
+	import MarkdownRenderer from "./MarkdownRenderer.svelte";
 	
 	export let content = "";
 	export let role = "";
@@ -8,7 +9,7 @@
 
 <div class="content-container {fromUser ? "from-user" : "received"}" transition:fly={{ x: fromUser ? 100 : -100, duration: 100 }}>
 	<div class="chat-bubble">
-		{content}
+		<MarkdownRenderer text={content}/>
 	</div>
 </div>
 
