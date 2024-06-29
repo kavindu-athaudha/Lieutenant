@@ -37,7 +37,7 @@
 					'Authorization': `Bearer $API_TOKEN`
 				},
 				body: JSON.stringify({
-					model: "gpt-4", // Use the correct model name
+					model: "gpt-4o", // Use the correct model name
 					messages: userMessages,
 					max_tokens: 150,
 					n: 1,
