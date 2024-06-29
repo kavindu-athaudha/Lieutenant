@@ -1,14 +1,15 @@
 import flowbitePlugin from "flowbite/plugin";
-
 import type { Config } from "tailwindcss";
 
 export default {
-	content: ["./src/**/*.{html,js,svelte,ts}", "./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}"],
-
+	content: [
+		"./src/**/*.{html,js,svelte,ts}",
+		"./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}",
+		"./node_modules/svelte-highlight/**/*.svelte"
+	],
 	theme: {
 		extend: {
 			colors: {
-				// flowbite-svelte
 				primary: {
 					50: "#1e3a8a",
 					100: "#1e3a8a",
@@ -24,6 +25,5 @@ export default {
 			}
 		}
 	},
-
 	plugins: [flowbitePlugin]
 } as Config;
