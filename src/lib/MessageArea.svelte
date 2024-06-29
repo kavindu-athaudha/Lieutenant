@@ -25,7 +25,7 @@
 	}
 </script>
 
-<div class="flex w-full max-w-screen-lg space-x-2 p-2" id="MessageBoxDiv">
+<div class="flex w-full max-w-full space-x-2 p-2" id="MessageBoxDiv">
 	<Button outline size="xs"><PaperClipOutline /></Button>
 	<Textarea
 		bind:value={message}
