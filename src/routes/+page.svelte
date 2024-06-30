@@ -53,11 +53,15 @@
 		}
 	}
 
-	onMount(async () => {
+	async function initializeBackend() {
 		const command = Command.sidecar('binaries/backend');
-		const output = await command.execute();
-		isLoading = false;
+		await command.execute();
 		addAssistantMessage('Hello! How can I help you today?');
+	}
+
+	onMount(async () => {
+		isLoading = false;
+		initializeBackend();
 	});
 </script>
 
