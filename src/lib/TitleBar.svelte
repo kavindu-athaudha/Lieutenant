@@ -2,7 +2,6 @@
 	import { onMount } from "svelte";
 	import { appWindow, LogicalSize } from "@tauri-apps/api/window";
 	import { invoke } from "@tauri-apps/api/tauri";
-	import { CloseOutline, MinusOutline } from "flowbite-svelte-icons";
   
 	let minimizeButton: HTMLDivElement;
 	let maximizeButton: HTMLDivElement;
