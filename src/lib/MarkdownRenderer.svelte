@@ -22,11 +22,11 @@
 		);
 		rawHTMLContent = rawHTMLContent.replace(
 			/<h2>/g,
-			'<h2 style="font-weight: bold; font-size: 1.75em; padding-top: 2em;">'
+			'<h2 style="font-weight: bold; font-weight: 600; font-size: 1.75em; padding-top: 2em;">'
 		);
 		rawHTMLContent = rawHTMLContent.replace(
 			/<h3>/g,
-			'<h3 style="font-weight: bold; padding-top: 2em">'
+			'<h3 style="font-weight: bold; font-weight: 500; padding-top: 2em">'
 		);
 		rawHTMLContent = rawHTMLContent.replace(/\[\^(\d+)\]/g, '<sup>[$1]</sup>');
 		rawHTMLContent = rawHTMLContent.replace(
@@ -125,10 +125,8 @@
 		border: none;
 		border-radius: 5px;
 		font-size: 0.25em;
-		/* Reduce font size to 25% */
 		cursor: pointer;
 		transition: transform 0.1s;
-		/* Change animation time to 0.1s */
 		opacity: 25%;
 	}
 

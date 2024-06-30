@@ -23,10 +23,6 @@
 		margin-bottom: 10px;
 		font-optical-sizing: auto;
 		font-family: 'Open Sans', sans-serif;
-		font-optical-sizing: auto;
-		font-weight: 300;
-		font-style: normal;
-		font-variation-settings: 'wdth' 100;
 	}
 
 	.from-user {
