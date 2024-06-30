@@ -114,11 +114,12 @@
 <style>
 	:global(.CodeBlock) {
 		position: relative;
+		padding-top: 0.5em;
 	}
 
 	:global(.floating-button) {
 		position: absolute;
-		top: 0.5em;
+		top: 1.5em;
 		right: 0.5em;
 		background-color: var(--primary-color);
 		color: white;

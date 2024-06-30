@@ -37,19 +37,19 @@
 				},
 				body: JSON.stringify(userMessages)
 			});
-			console.log(JSON.stringify(userMessages));
-			debugger;
 
 			if (!response.ok) {
 				const errorData = await response.json();
-				console.error('Error from FastAPI:', errorData);
+				addAssistantMessage(
+					'OpenAI replied with the following error: \n```bash\n' + errorData['detail'] + ''
+				);
 				return;
 			}
 
 			const data = await response.json();
 			addAssistantMessage(data.reply);
 		} catch (error) {
-			console.error('Network error:', error);
+			addAssistantMessage('The following error occured: ```shell\n' + error + '```');
 		}
 	}
 
