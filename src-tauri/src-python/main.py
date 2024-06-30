@@ -21,7 +21,7 @@ app.add_middleware(
 
 
 def get_open_ai_api_key() -> str:
-    config_file_path: str = f"{os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))}/src/lib/data/config.json"
+    config_file_path: str = f"{os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}/data/config.json"
     with open(config_file_path) as f:
         config: Dict[str, Any] = json.load(f)
     return config["api_key"]
