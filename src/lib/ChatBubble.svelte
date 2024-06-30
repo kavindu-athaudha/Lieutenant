@@ -1,15 +1,18 @@
 <script>
-	import { fly } from "svelte/transition";
-	import MarkdownRenderer from "./MarkdownRenderer.svelte";
-	
-	export let content = "";
-	export let role = "";
-	let fromUser = role === "user";
+	import { fly } from 'svelte/transition';
+	import MarkdownRenderer from './MarkdownRenderer.svelte';
+
+	export let content = '';
+	export let role = '';
+	let fromUser = role === 'user';
 </script>
 
-<div class="content-container {fromUser ? "from-user" : "received"}" transition:fly={{ x: fromUser ? 100 : -100, duration: 100 }}>
+<div
+	class="content-container {fromUser ? 'from-user' : 'received'}"
+	transition:fly={{ x: fromUser ? 100 : -100, duration: 100 }}
+>
 	<div class="chat-bubble">
-		<MarkdownRenderer markdownText={content}/>
+		<MarkdownRenderer markdownText={content} />
 	</div>
 </div>
 
@@ -18,11 +21,12 @@
 		display: flex;
 		width: 100%;
 		margin-bottom: 10px;
-		font-family: "Noto Serif", serif;
+		font-optical-sizing: auto;
+		font-family: 'Open Sans', sans-serif;
 		font-optical-sizing: auto;
 		font-weight: 300;
 		font-style: normal;
-		font-variation-settings: "wdth" 100;
+		font-variation-settings: 'wdth' 100;
 	}
 
 	.from-user {

@@ -115,6 +115,7 @@
 	:global(.CodeBlock) {
 		position: relative;
 	}
+
 	:global(.floating-button) {
 		position: absolute;
 		top: 0.5em;
@@ -123,13 +124,23 @@
 		color: white;
 		border: none;
 		border-radius: 5px;
-		font-size: 0.25em; /* Reduce font size to 25% */
+		font-size: 0.25em;
+		/* Reduce font size to 25% */
 		cursor: pointer;
-		transition: transform 0.1s; /* Change animation time to 0.1s */
+		transition: transform 0.1s;
+		/* Change animation time to 0.1s */
 		opacity: 25%;
 	}
+
 	:global(.floating-button:hover) {
 		transform: scale(1.5);
 		opacity: 100%;
+	}
+
+	:global(code) {
+		font-family: 'JetBrains Mono', monospace;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
 	}
 </style>
