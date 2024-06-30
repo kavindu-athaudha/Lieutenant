@@ -1,27 +1,28 @@
 <script lang="ts">
-	import { createEventDispatcher } from "svelte";
-	import { Button, Textarea } from "flowbite-svelte";
-	import { AngleRightOutline, PaperClipOutline } from "flowbite-svelte-icons";
+	import { createEventDispatcher } from 'svelte';
+	import { Button, Textarea } from 'flowbite-svelte';
+	import { AngleRightOutline, PaperClipOutline } from 'flowbite-svelte-icons';
 
-	let message = "";
+	let message = '';
 	const dispatch = createEventDispatcher();
 
 	function handleSendMessage() {
 		if (message.trim()) {
-			dispatch("messageSent", { text: message });
-			message = "";
+			dispatch('messageSent', { text: message });
+			message = '';
 		}
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
-		if (event.ctrlKey && event.key === "Enter") {
+		if (event.key === 'Enter') {
+			event.preventDefault();
 			handleSendMessage();
 		}
 	}
 
 	// Add event listener to the Textarea
-	$: if (typeof window !== "undefined") {
-		document.addEventListener("keydown", handleKeydown);
+	$: if (typeof window !== 'undefined') {
+		document.addEventListener('keydown', handleKeydown);
 	}
 </script>
 
@@ -35,7 +36,9 @@
 		name="message"
 		class="flex-grow p-3"
 	/>
-	<Button size="xs" id="SendMessageButton" on:click={handleSendMessage}><AngleRightOutline /></Button>
+	<Button size="xs" id="SendMessageButton" on:click={handleSendMessage}
+		><AngleRightOutline /></Button
+	>
 </div>
 
 <style>
