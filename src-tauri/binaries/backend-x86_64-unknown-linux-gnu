@@ -9,7 +9,7 @@ PYTHON_BIN=$VENV_FOLDER/bin/python
 if [ ! -d "$LOG_FOLDER" ]; then
   mkdir "$LOG_FOLDER"
 else
-    echo "Logs folder exists"
+  echo "Logs folder exists"
 fi
 
 echo "" >> $LOG
@@ -17,22 +17,22 @@ echo "---------------------------------------------------------------" >> $LOG
 echo "---------------------------------------------------------------" >> $LOG
 
 if [ ! -d "$VENV_FOLDER" ]; then
-    echo "Virgin run; environment needs to be initialized."
+  echo "Virgin run; environment needs to be initialized."
 
-    echo "Creating the virtual environment" >> $LOG
-    python -m venv --without-pip $VENV_FOLDER
+  echo "Creating the virtual environment" >> $LOG
+  python -m venv --without-pip $VENV_FOLDER
 
-    echo "Installing pip" >> $LOG
-    curl https://bootstrap.pypa.io/get-pip.py -o $BACKEND_SRC/get-pip.py && $PYTHON_BIN $BACKEND_SRC/get-pip.py && rm $BACKEND_SRC/get-pip.py
+  echo "Installing pip" >> $LOG
+  curl https://bootstrap.pypa.io/get-pip.py -o $BACKEND_SRC/get-pip.py && $PYTHON_BIN $BACKEND_SRC/get-pip.py && rm $BACKEND_SRC/get-pip.py
 
-    echo "Installing the packages" >> $LOG
-    $PYTHON_BIN -m pip install -r $BACKEND_SRC/requirements.txt
+  echo "Installing the packages" >> $LOG
+  $PYTHON_BIN -m pip install -r $BACKEND_SRC/requirements.txt
 else
-    echo "Environment already initialized; no thing to do here." >> $LOG
+  echo "Environment already initialized; no thing to do here." >> $LOG
 fi
 
 echo "Starting the service." >> $LOG
-$PYTHON_BIN $BACKEND_SRC/main.py >> $LOG
+nohup $PYTHON_BIN $BACKEND_SRC/main.py >> $LOG 2>&1 &
 
 echo "---------------------------------------------------------------" >> $LOG
 echo "---------------------------------------------------------------" >> $LOG
