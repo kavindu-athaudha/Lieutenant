@@ -30,62 +30,24 @@
 		const userMessages = messages.map((msg) => ({ role: msg.role, content: msg.content }));
 
 		try {
-			const response = await fetch('https://api.openai.com/v1/chat/completions', {
+			const response = await fetch('http://localhost:1999/ask', {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json',
-					'Authorization': `Bearer $API_TOKEN`
+					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({
-					model: 'gpt-4o', // Use the correct model name
-					messages: userMessages,
-					max_tokens: 150,
-					n: 1,
-					stop: null,
-					temperature: 0.7,
-					stream: true // Enable streaming
-				})
+				body: JSON.stringify(userMessages)
 			});
+			console.log(JSON.stringify(userMessages));
+			debugger;
 
 			if (!response.ok) {
 				const errorData = await response.json();
-				console.error('Error from OpenAI API:', errorData);
+				console.error('Error from FastAPI:', errorData);
 				return;
 			}
 
-			const reader = response.body?.getReader();
-			const decoder = new TextDecoder('utf-8');
-			let fullResponse = '';
-
-			while (true) {
-				const { done, value } = (await reader?.read()) || {};
-				if (done) break;
-				const chunk = decoder.decode(value, { stream: true });
-
-				// Log the full chunk
-				console.log('Full chunk:', chunk);
-
-				// Extract and log the content of each chunk
-				const dataMatches = chunk.matchAll(/"content":"([^"]*)"/g);
-				for (const match of dataMatches) {
-					if (match) {
-						let partialResponse = match[1];
-						// Replace special characters if needed
-						partialResponse = partialResponse.replace(/\\n/g, '\n').replace(/\\"/g, '"');
-						console.log('Partial Response:', partialResponse);
-						fullResponse += partialResponse;
-					}
-				}
-
-				// End loop if "data: [DONE]" is received
-				if (chunk.includes('data: [DONE]')) {
-					console.log('Received "DONE". Ending loop.');
-					break;
-				}
-			}
-
-			addAssistantMessage(fullResponse);
-			console.log('Full response: ' + fullResponse);
+			const data = await response.json();
+			addAssistantMessage(data.reply);
 		} catch (error) {
 			console.error('Network error:', error);
 		}
