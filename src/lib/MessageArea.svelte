@@ -1,7 +1,6 @@
 <script lang="ts">
+	import { Textarea, Button } from 'flowbite-svelte';
 	import { createEventDispatcher } from 'svelte';
-	import { Button, Textarea } from 'flowbite-svelte';
-	import { AngleRightOutline, PaperClipOutline } from 'flowbite-svelte-icons';
 
 	let message = '';
 	const dispatch = createEventDispatcher();
@@ -20,25 +19,25 @@
 		}
 	}
 
-	// Add event listener to the Textarea
 	$: if (typeof window !== 'undefined') {
 		document.addEventListener('keydown', handleKeydown);
 	}
 </script>
 
-<div class="flex w-full max-w-full space-x-2 p-2" id="MessageBoxDiv">
-	<Button outline size="xs"><PaperClipOutline /></Button>
+<div class="flex items-center rounded-lg bg-gray-50 px-3 py-2 dark:bg-gray-700" id="MessageBoxDiv">
+	<button type="button" class="chat-button" aria-label="Attach file">
+		<span class="material-symbols-outlined" style="padding-right: 0.25em">attach_file</span>
+	</button>
 	<Textarea
 		bind:value={message}
-		id="MessageBox"
-		placeholder="Ask Lieutenant"
+		id="chat"
+		class="mx-0 bg-white"
 		rows="1"
-		name="message"
-		class="flex-grow p-3"
+		placeholder="Ask Lieutenant..."
 	/>
-	<Button size="xs" id="SendMessageButton" on:click={handleSendMessage}
-		><AngleRightOutline /></Button
-	>
+	<button type="button" class="chat-button" aria-label="Send message" on:click={handleSendMessage}>
+		<span class="material-symbols-outlined" style="padding-left: 0.25em">send</span>
+	</button>
 </div>
 
 <style>
@@ -50,5 +49,20 @@
 		padding-bottom: 15pt;
 		padding-left: 15pt;
 		padding-right: 15pt;
+	}
+
+	.chat-button {
+		color: var(--primary-color);
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: transform 0.2s;
+	}
+
+	.chat-button:hover {
+		transform: scale(1.5);
+		opacity: 100%;
 	}
 </style>
