@@ -41,7 +41,7 @@
 			if (!response.ok) {
 				const errorData = await response.json();
 				addAssistantMessage(
-					'OpenAI replied with the following error: \n```bash\n' + errorData['detail'] + ''
+					'OpenAI replied with the following error\n:```\n' + errorData['detail'] + ''
 				);
 				return;
 			}
@@ -49,7 +49,8 @@
 			const data = await response.json();
 			addAssistantMessage(data.reply);
 		} catch (error) {
-			addAssistantMessage('The following error occured: ```shell\n' + error + '```');
+			debugger;
+			addAssistantMessage('The following error occured: ```\n' + error + '```');
 		}
 	}
 
