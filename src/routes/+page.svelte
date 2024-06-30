@@ -17,17 +17,17 @@
 
 	let messages: Message[] = [];
 
-	function addUserMessage(event: MessageEvent){
-		messages = [...messages, { role: "user", content: event.detail.text }];
+	function addUserMessage(event: MessageEvent) {
+		messages = [...messages, { role: 'user', content: event.detail.text }];
 		getReplyFromLLM(messages);
 	}
 
-	function addAssistantMessage(message: string){
-		messages = [...messages, { role: "assistant", content: message }];
+	function addAssistantMessage(message: string) {
+		messages = [...messages, { role: 'assistant', content: message }];
 	}
 
-	async function getReplyFromLLM(messages: Message[]){
-		const userMessages = messages.map(msg => ({ role: msg.role, content: msg.content }));
+	async function getReplyFromLLM(messages: Message[]) {
+		const userMessages = messages.map((msg) => ({ role: msg.role, content: msg.content }));
 
 		try {
 			const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -37,26 +37,57 @@
 					'Authorization': `Bearer $API_TOKEN`
 				},
 				body: JSON.stringify({
-					model: "gpt-4o", // Use the correct model name
+					model: 'gpt-4o', // Use the correct model name
 					messages: userMessages,
 					max_tokens: 150,
 					n: 1,
 					stop: null,
-					temperature: 0.7
+					temperature: 0.7,
+					stream: true // Enable streaming
 				})
 			});
-			
+
 			if (!response.ok) {
 				const errorData = await response.json();
-				console.error("Error from OpenAI API:", errorData);
+				console.error('Error from OpenAI API:', errorData);
 				return;
 			}
 
-			const data = await response.json();
-			const replyFromLLM = data.choices[0].message.content;
-			addAssistantMessage(replyFromLLM);
+			const reader = response.body?.getReader();
+			const decoder = new TextDecoder('utf-8');
+			let fullResponse = '';
+
+			while (true) {
+				const { done, value } = (await reader?.read()) || {};
+				if (done) break;
+				const chunk = decoder.decode(value, { stream: true });
+
+				// Log the full chunk
+				console.log('Full chunk:', chunk);
+
+				// Extract and log the content of each chunk
+				const dataMatches = chunk.matchAll(/"content":"([^"]*)"/g);
+				for (const match of dataMatches) {
+					if (match) {
+						let partialResponse = match[1];
+						// Replace special characters if needed
+						partialResponse = partialResponse.replace(/\\n/g, '\n').replace(/\\"/g, '"');
+						console.log('Partial Response:', partialResponse);
+						fullResponse += partialResponse;
+					}
+				}
+
+				// End loop if "data: [DONE]" is received
+				if (chunk.includes('data: [DONE]')) {
+					console.log('Received "DONE". Ending loop.');
+					break;
+				}
+			}
+
+			addAssistantMessage(fullResponse);
+			console.log('Full response: ' + fullResponse);
 		} catch (error) {
-			console.error("Network error:", error);
+			console.error('Network error:', error);
 		}
 	}
 
@@ -64,10 +95,7 @@
 		const command = Command.sidecar('binaries/backend');
 		const output = await command.execute();
 		isLoading = false;
-
-		setTimeout(() => {
-			addAssistantMessage("Hello! How can I help you today?");
-		}, 500);
+		addAssistantMessage('Hello! How can I help you today?');
 	});
 </script>
 
@@ -79,7 +107,7 @@
 		<MessageArea on:messageSent={addUserMessage} />
 		<div class="messages-container">
 			{#each messages as { content, role }}
-				<ChatBubble content={content} {role} />
+				<ChatBubble {content} {role} />
 			{/each}
 		</div>
 	</div>
