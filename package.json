@@ -10,7 +10,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"tauri": "tauri"
+		"tauri": "tauri",
+		"publish": "npm run tauri build && rm -rf $HOME/Documents/Applications/Lieutenant && mv src-tauri/target/release $HOME/Documents/Applications/Lieutenant"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
