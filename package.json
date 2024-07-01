@@ -11,7 +11,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"tauri": "tauri",
-		"publish": "npm run tauri build && rm -rf $HOME/Documents/Applications/Lieutenant && mv src-tauri/target/release $HOME/Documents/Applications/Lieutenant"
+		"publish": "rm -rf src-tauri/target && npm run tauri build && rm -rf $HOME/Documents/Applications/Lieutenant && mv src-tauri/target/release $HOME/Documents/Applications/Lieutenant"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
