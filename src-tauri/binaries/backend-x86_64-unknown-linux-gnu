@@ -1,11 +1,13 @@
 #!/bin/bash
 
-LOG_FOLDER=.logs
+APPLICATION_DIR=$(dirname "$(realpath "$0")")
+LOG_FOLDER=$APPLICATION_DIR/.logs
 LOG=$LOG_FOLDER/backend.log
-BACKEND_SRC=src-python
+BACKEND_SRC=$APPLICATION_DIR/src-python
 VENV_FOLDER=$BACKEND_SRC/.venv
 PYTHON_BIN=$VENV_FOLDER/bin/python
 
+cd 
 if [ ! -d "$LOG_FOLDER" ]; then
   mkdir "$LOG_FOLDER"
 else
