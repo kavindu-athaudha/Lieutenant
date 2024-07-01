@@ -22,7 +22,7 @@
 		width: 100%;
 		margin-bottom: 10px;
 		font-optical-sizing: auto;
-		font-family: 'Open Sans', sans-serif;
+		font-weight: 300;
 	}
 
 	.from-user {
